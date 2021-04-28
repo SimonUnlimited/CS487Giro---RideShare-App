@@ -1,23 +1,15 @@
+import 'package:Giro/User/Screens/Login/Login.dart';
 import 'package:flutter/material.dart';
-import './Login.dart';
 
-class Signup extends StatefulWidget {
-  static const routeName = '/signup';
-  
+class Signupform extends StatefulWidget {
   @override
-  _SignupState createState() => _SignupState();
+  _SignupformState createState() => _SignupformState();
 }
 
-class _SignupState extends State<Signup> {
-  
+class _SignupformState extends State<Signupform> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Login Page"),
-      ),
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Padding(
@@ -102,7 +94,6 @@ class _SignupState extends State<Signup> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }
