@@ -3,6 +3,11 @@ class LocationCard extends StatelessWidget {
   String title;
   String subtitle;
 
+  LocationCard(String title, String subtitle) {
+    this.title = title;
+    this.subtitle = subtitle;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(

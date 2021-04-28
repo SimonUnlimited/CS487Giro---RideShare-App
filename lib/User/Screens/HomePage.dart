@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import '../Screens/Profile/Profile.dart';
+import '../Screens/Payment/Payment.dart';
+import '../Screens/PastRides/PastRides.dart';
 class HomePage extends StatelessWidget {
   static const routeName = '/homepage';
 
@@ -101,7 +103,8 @@ class HomePage extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Profile()));
               },
             ),
             ListTile(
@@ -110,7 +113,8 @@ class HomePage extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Payment()));
               },
             ),
             ListTile(
@@ -119,7 +123,8 @@ class HomePage extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => PastRides()));
               },
             ),
           ],
