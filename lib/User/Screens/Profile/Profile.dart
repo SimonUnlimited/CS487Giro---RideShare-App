@@ -1,9 +1,17 @@
+import 'package:Giro/User/models/User.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/Profile/ProfileBody.dart';
 import '../../widgets/Profile/profile.dart';
 import '../../widgets/Profile/profileHeader.dart';
 
 class Profile extends StatelessWidget {
+  User user;
+  //final User user;
+
+  Profile(User user) {
+    this.user = user;
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,8 +23,8 @@ class Profile extends StatelessWidget {
             child: Container(
           child: Column(
             children: [
-              ProfileHeader('Joh Doe'),
-              ProfileBody('lkapesa@hawk.iit.edu', '6162649500', '123456789'),
+              ProfileHeader(user),
+              ProfileBody(user),
               
             ],
           ),

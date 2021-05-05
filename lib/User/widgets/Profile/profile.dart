@@ -4,6 +4,7 @@ class Profile extends StatefulWidget {
   String name;
   String email;
   String number;
+  
 
   @override
   _ProfileState createState() => _ProfileState();

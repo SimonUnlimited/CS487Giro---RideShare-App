@@ -1,14 +1,23 @@
+import 'package:Giro/Data.dart';
+import 'package:Giro/User/Screens/Login/Login.dart';
+import 'package:Giro/User/models/User.dart';
 import 'package:flutter/material.dart';
 import '../Screens/Profile/Profile.dart';
 import '../Screens/Payment/Payment.dart';
 import '../Screens/PastRides/PastRides.dart';
+import '../Screens/ScheduleRides/ScheduleRides.dart';
+import './Favorites/Favorites.dart';
+import '../Screens/Wallet/wallet.dart';
+
 class HomePage extends StatelessWidget {
   static const routeName = '/homepage';
 
-  var user;
+  User user;
   //final User user;
 
-  HomePage({this.user});
+  HomePage(User user) {
+    this.user = user;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +25,15 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Home"),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => Login()));
+            },
+            child: Text("Logout"),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(children: <Widget>[
@@ -44,8 +62,8 @@ class HomePage extends StatelessWidget {
                 color: Colors.blue, borderRadius: BorderRadius.circular(20)),
             child: FlatButton(
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => HomePage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => ScheduleRides(user)));
               },
               child: Text(
                 'Schedule Ride',
@@ -61,25 +79,29 @@ class HomePage extends StatelessWidget {
                 const ListTile(
                   leading: Icon(Icons.location_on),
                   title: Text('Recent Location'),
-                  subtitle:
-                      Text('3349 S Wabash Avenue'),
+                  subtitle: Text('3349 S Wabash Avenue'),
                 )
               ],
             )),
           ),
-          Center(
-            child: Card(
-                child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const ListTile(
-                  leading: Icon(Icons.star),
-                  title: Text('Favorties'),
-                  subtitle:
-                      Text('List of favorite locations'),
-                )
-              ],
-            )),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => Favorites(user)));
+            },
+            child: Center(
+              child: Card(
+                  child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const ListTile(
+                    leading: Icon(Icons.star),
+                    title: Text('Favorties'),
+                    subtitle: Text('List of favorite locations'),
+                  )
+                ],
+              )),
+            ),
           ),
         ]),
       ),
@@ -92,7 +114,7 @@ class HomePage extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('Customer Name'),
+              child: Text(user.getFirstName()),
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
@@ -104,19 +126,20 @@ class HomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => Profile()));
+                    context, MaterialPageRoute(builder: (_) => Profile(user)));
               },
             ),
-            ListTile(
+            /*ListTile(
               title: Text('Payment'),
               onTap: () {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => Payment()));
+                    context, MaterialPageRoute(builder: (_) => Payment(user)));
               },
             ),
+            */
             ListTile(
               title: Text('Past Rides'),
               onTap: () {
@@ -124,7 +147,17 @@ class HomePage extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => PastRides()));
+                    context, MaterialPageRoute(builder: (_) => PastRides(user)));
+              },
+            ),
+            ListTile(
+              title: Text('Wallet'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Wallet(user)));
               },
             ),
           ],

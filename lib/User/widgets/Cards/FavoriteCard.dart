@@ -4,6 +4,10 @@ class FavoriteCard extends StatelessWidget {
   String title;
   String subtitle;
 
+  FavoriteCard(String title, String subtitle) {
+    this.title = title;
+    this.subtitle = subtitle;
+  }
   @override
   Widget build(BuildContext context) {
     return Card(

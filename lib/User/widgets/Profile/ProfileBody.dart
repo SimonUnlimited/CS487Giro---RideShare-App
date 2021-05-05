@@ -1,15 +1,14 @@
+import 'package:Giro/User/models/User.dart';
 import 'package:flutter/material.dart';
 import '../../Screens/Profile/EditProfile.dart';
 
 class ProfileBody extends StatelessWidget {
-  String email;
-  String phone;
-  String paymentInfo;
 
-  ProfileBody(String email, String phone, String paymentInfo) {
-    this.phone = phone;
-    this.email = email;
-    this.paymentInfo = paymentInfo;
+  User user;
+  //final User user;
+
+  ProfileBody(User user) {
+    this.user = user;
   }
 
   @override
@@ -21,19 +20,19 @@ class ProfileBody extends StatelessWidget {
           Card(
             child: ListTile(
               title: Text('Email'),
-              subtitle: Text(email),
+              subtitle: Text(user.email),
             ),
           ),
           Card(
             child: ListTile(
               title: Text('Phone'),
-              subtitle: Text(phone),
+              subtitle: Text(user.phoneNumber),
             ),
           ),
           Card(
             child: ListTile(
               title: Text('Payment Info'),
-              subtitle: Text(paymentInfo),
+              subtitle: Text(user.getPaymentInfo()),
             ),
           ),
           Container(
@@ -45,7 +44,7 @@ class ProfileBody extends StatelessWidget {
             child: FlatButton(
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => EditProfile()));
+                    context, MaterialPageRoute(builder: (_) => EditProfile(user)));
               },
               child: Text(
                 'Edit Profile',
