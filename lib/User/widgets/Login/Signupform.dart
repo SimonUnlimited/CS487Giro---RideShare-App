@@ -182,6 +182,8 @@ class _SignupformState extends State<Signupform> {
                           pass.text,
                           200,
                           paymentInfo.text));
+                          Navigator.push(
+                          context, MaterialPageRoute(builder: (_) => Login()));
                     }
                     break;
                   case "User":
